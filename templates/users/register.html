@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register{% endblock title %}
+
+{% block body %}
+<form action="POST">
+    {{form|crispy}}
+    <input type="submit" value="Register">
+</form>
+{% endblock body %}
