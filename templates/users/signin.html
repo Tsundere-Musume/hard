@@ -2,12 +2,12 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}Register{% endblock title %}
+{% block title %}Sign-in{% endblock title %}
 
 {% block body %}
 <form method="POST">
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" value="Register">
+    <input type="submit" value="Sign-in">
 </form>
 {% endblock body %}

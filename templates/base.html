@@ -8,7 +8,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <title>{% block title %}Core{% endblock title %}</title>
 </head>
 <body>
@@ -34,6 +33,20 @@
         </div>
     </div>
     <div class="main-body">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert-danger message">
+                {% elif message.tags == "debug" %}    
+                    <div class="alert-dark message">
+                {% else %}
+                    <div class="alert-{{message.tags}} message">
+                {% endif %}
+                    {{message}}
+                    </div>
+            {% endfor %}
+        {% endif %}
+
         {% block body %}
         {% endblock body %}
     </div>
