@@ -6,14 +6,10 @@ from django.contrib.auth.models import User
 
 class MyUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default_profile.jpg', upload_to='profile_pics')
-    banner = models.ImageField(default='default_banner.jpg', upload_to='banners')
+    image = models.ImageField(default='default_profile.jpg', upload_to='profile_pics')      # Profile Picture
+    banner = models.ImageField(default='default_banner.jpg', upload_to='banners')           # Banner Image
     creationDate = models.DateField(auto_now_add=True)
     theme = models.CharField(max_length=5)
 
     def __str__(self):
         return (f'{self.user.username}\'s profile')
-
-class Follower(models.Model):
-    follower = models.ForeignKey(User, on_delete=models.CASCADE)
-    
