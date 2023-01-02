@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "blog",
     "users",
-    "crispy_forms",
+    "crispy_forms"
 ]
 
 MIDDLEWARE = [
@@ -134,4 +134,6 @@ MEDIA_URL = "media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_URL = '/users/signin/'
 

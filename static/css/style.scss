@@ -64,3 +64,12 @@ a{
     width: 60%;
     margin: auto;
 }
+
+
+//
+.blue-a{
+    color: blue;
+    &:hover{
+        color: darkblue;
+    }
+}

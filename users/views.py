@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import MyUser
-from .forms import UserRegisterForm, UserSigninForm
+from .forms import UserRegisterForm, UserSigninForm, UserUpdateForm, MyUserUpdateForm
 
 # Create your views here.
 def register(request):
@@ -36,7 +36,7 @@ def signin(request):
                 messages.success(request, 'Log-in Successful')
 
                 # Go somewhere after login
-                return redirect('# Go Somewhere')
+                return redirect('user-profile')
 
             else:
                 messages.error(request, 'Invalid Credentials')
@@ -46,3 +46,26 @@ def signin(request):
     else:
         form = UserSigninForm()
         return render(request, 'users/signin.html', {'form': form})
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        mu_form = MyUserUpdateForm(request.POST, request.FILES, instance=request.user.myuser)
+        my_forms = {
+            'u_form': u_form,
+            'mu_form': mu_form
+        }
+        if u_form.is_valid() and mu_form.is_valid():
+            u_form.save()
+            mu_form.save()
+            messages.success(request, 'Updated!')
+            return redirect('user-profile')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        mu_form = MyUserUpdateForm(instance=request.user.myuser)
+        my_forms = {
+            'u_form': u_form,
+            'mu_form': mu_form
+        }
+        return render(request, 'users/profile.html', context=my_forms)

@@ -62,4 +62,11 @@ a:hover {
 .main-body {
   width: 60%;
   margin: auto;
+}
+
+.blue-a {
+  color: blue;
+}
+.blue-a:hover {
+  color: darkblue;
 }/*# sourceMappingURL=style.css.map */

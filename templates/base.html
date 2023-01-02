@@ -23,14 +23,25 @@
                 </form>
             </div>
         </div>
+        {% if user.is_authenticated %}
         <div class="side-navbar right-navbar">
             <div class="side-navbar-element write-blog">
                 <a href="#">Write</a>
             </div>
             <div class="side-navbar-element div-profile-pic">
-                <img src="/static/images/hard_logo.jpg" class="profile-pic" alt="">
+                <img src="{{user.myuser.image.url}}" class="profile-pic" alt="">
             </div>
         </div>
+        {% else %}
+        <div class="side-navbar right-navbar">
+            <div class="side-navbar-element write-blog">
+                <a href="{% url 'user-register' %}">Register</a>
+            </div> | 
+            <div class="side-navbar-element write-blog">
+                <a href="{% url 'user-signin' %}">Sign-in</a>
+            </div>
+        </div>
+        {% endif %}
     </div>
     <div class="main-body">
         {% if messages %}
