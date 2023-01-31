@@ -4,9 +4,13 @@
 {% block title %} Title Here {% endblock title %}
 
 {% block body %}
-
-<div>
-    Body Segment
-</div>
-
+{% if postList %}
+<ul>
+    {% for post in postList %}
+        <li>
+            <a href = "{% url 'blog:postDetail' post.id%}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock body %}

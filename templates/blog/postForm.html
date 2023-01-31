@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Title Here {% endblock title %}
+
+{% block body %}
+ <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.media}}
+    <div class="form-control">{{form.as_p}}</div>
+
+        <button>Submit</button>
+ </form>
+{% endblock body %}
