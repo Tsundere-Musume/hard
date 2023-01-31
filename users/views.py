@@ -35,8 +35,8 @@ def signin(request):
                 login(request, user)
                 messages.success(request, 'Log-in Successful')
 
-                # Go somewhere after login
-                return redirect('user-profile')
+                # Go home after login
+                return redirect('blog:home')
 
             else:
                 messages.error(request, 'Invalid Credentials')
@@ -69,3 +69,8 @@ def profile(request):
             'mu_form': mu_form
         }
         return render(request, 'users/profile.html', context=my_forms)
+
+@login_required
+def signout(request):
+    logout(request)
+    return redirect('blog:home')

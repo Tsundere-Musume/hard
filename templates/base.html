@@ -14,7 +14,9 @@
     <div class="navbar">
         <div class="side-navbar left-navbar">
             <div class="side-navbar-element logo">
-                <img class="img-logo" src="{% static 'images/hard_logo.jpg' %}" alt="Error">
+                <a href="{% url 'blog:home' %}">
+                    <img class="img-logo" src="{% static 'images/hard_logo.jpg' %}" alt="Error">
+                </a>
             </div>
             <div class="side-navbar-element">
                 <form class="form search-form" method="">
@@ -26,10 +28,12 @@
         {% if user.is_authenticated %}
         <div class="side-navbar right-navbar">
             <div class="side-navbar-element write-blog">
-                <a href="#">Write</a>
+                <a href="{% url 'blog:postCreate' %}">Write</a>
             </div>
             <div class="side-navbar-element div-profile-pic">
-                <img src="{{user.myuser.image.url}}" class="profile-pic" alt="">
+                <a href="{% url 'user-profile' %}">
+                    <img src="{{user.myuser.image.url}}" class="profile-pic" alt="">
+                </a>
             </div>
         </div>
         {% else %}

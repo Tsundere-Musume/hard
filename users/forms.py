@@ -34,7 +34,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class MyUserUpdateForm(forms.ModelForm):
-    theme = forms.ChoiceField(required = True, choices = THEME_CHOICES, widget=forms.RadioSelect(attrs={'class' : 'Radio'}), initial='dark')
+    theme = forms.ChoiceField(required = True, choices = THEME_CHOICES, widget=forms.RadioSelect(attrs={'class' : 'Radio'}))
     class Meta:
         model = MyUser
         fields = ['image', 'banner', 'theme']
