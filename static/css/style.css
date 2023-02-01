@@ -70,3 +70,7 @@ a:hover {
 .blue-a:hover {
   color: darkblue;
 }/*# sourceMappingURL=style.css.map */
+
+#id_body{
+  display: none;
+}

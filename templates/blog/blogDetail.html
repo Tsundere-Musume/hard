@@ -5,7 +5,7 @@
 
 {% block body %}
 <h2 id="h2ost-title">{{post.title}}</h2>
-<a href="/editpost/{{post.id}}/">Edit</a>
+<a href="{% url 'blog:postEdit' post.id%}">Edit</a>
 <section id="post-body"></section>
 <script>
   window.addEventListener("DOMContentLoaded", () => {
