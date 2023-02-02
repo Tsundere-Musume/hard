@@ -44,6 +44,12 @@ function addArticles(){
       }
     }
     const node = document.createElement("div")
+    const c1 = document.createElement("div")
+    const c2 = document.createElement("div")
+    const c3 = document.createElement("div")
+    c1.classList.add("container-item-1")
+    c2.classList.add("container-item-2")
+    c3.classList.add("user-name-pic")
     node.classList.add("container-item")
     const username  = document.createElement("a")
     username.href = "#"
@@ -55,11 +61,16 @@ function addArticles(){
     const title = document.createElement("h3")
     title.innerHTML = post.title
     title.classList.add("post-heading")
-    node.appendChild(userPic)
-    node.appendChild(username)
-    node.appendChild(title)
-    if(paragraph)node.appendChild(paragraph)
-    if(img)node.appendChild(img)
+    c3.appendChild(userPic)
+    c3.appendChild(username)
+    c1.appendChild(c3)
+    c1.appendChild(title)
+    if(paragraph)c1.appendChild(paragraph)
+    node.appendChild(c1)
+    if(img){
+      c2.appendChild(img)
+      node.appendChild(c2)
+    }
     postsContainer.appendChild(node);
   }
 }
