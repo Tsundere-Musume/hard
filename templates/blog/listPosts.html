@@ -1,18 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} Home {% endblock title %}
-
+{% block title %} Blogs {% endblock title %}
 {% block body %}
 {% if postList %}
-<ul>
-    {% for post in postList %}
-        <li>
-            <a href = "{% url 'blog:postDetail' post.id%}">{{ post.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
+<div id="posts-container"></div>
 {% else %}
 <p><a href="{% url 'blog:postCreate' %}">Create your first post.</a></p>
 {% endif %}
+<script>
+  window.addEventListener("DOMContentLoaded",addArticles)
+
+function addArticles(){
+  const postsContainer = document.getElementById("posts-container");
+  if(!postsContainer)return null;
+  const postList = JSON.parse("{{postList|escapejs}}");
+  for(const post of postList)
+  {
+    const blocks = (JSON.parse(post.fields.body)).blocks
+    let paragraph;
+    let img;
+    const output = {};
+    for(let i = 0; i < blocks.length; i++){
+      switch(blocks[i].type){
+        case "paragraph":
+          if(!output.hasOwnProperty("paragraph"))
+          {
+          const p = document.createElement("p");
+          p.innerHTML = blocks[i].data.text;
+          paragraph = p
+          }
+          break;
+
+        case "Image":
+          if(!output.hasOwnProperty("img")){
+            let image = document.createElement("img")
+            image.src = `${blocks[i].data.file.url}`
+            image.height = 100;
+            image.width = 100;
+            img = image;
+          }
+          break;
+      }
+    }
+    const node = document.createElement("div")
+    node.classList.add("list-item")
+    const title = document.createElement("h3")
+    title.innerHTML = post.fields.title
+    node.appendChild(title)
+    if(paragraph)node.appendChild(paragraph)
+    if(img)node.appendChild(img)
+    postsContainer.appendChild(node);
+  }
+}
+</script>
 {% endblock body %}

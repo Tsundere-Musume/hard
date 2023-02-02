@@ -11,6 +11,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import requires_csrf_token, csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db.utils import IntegrityError
+from django.core import serializers
 
 
 class Home(ListView):
@@ -80,7 +81,8 @@ class ListPosts(LoginRequiredMixin, View):
 
     def get(self, request):
         posts = Post.objects.filter(user = self.request.user)
-        return render(request, self.template_name, {'postList':posts})
+        postsJson = serializers.serialize('json',posts)
+        return render(request, self.template_name, {'postList':postsJson})
 
 
 class PostDetail(DetailView):
