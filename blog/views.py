@@ -1,3 +1,6 @@
+import json
+from datetime import date, datetime
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
@@ -13,6 +16,12 @@ from django.views.generic import DetailView, ListView
 
 from .forms import PostCreateForm
 from .models import Likes, Post
+
+
+def json_serial(obj):
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError(f"Type {type(obj)} is not serializable.")
 
 
 class Home(ListView):
@@ -81,8 +90,10 @@ class ListPosts(LoginRequiredMixin, View):
     template_name = "blog/listPosts.html"
 
     def get(self, request):
-        posts = Post.objects.filter(user=self.request.user)
-        postsJson = serializers.serialize("json", posts, use_natural_foreign_keys=True)
+        posts = Post.objects.filter(user=self.request.user).values(
+            "user__username", "user__myuser__image", "title", "body", "createdAt","user","updatedAt"
+        )
+        postsJson = json.dumps(list(posts), default=json_serial)
         return render(request, self.template_name, {"postList": postsJson})
 
 
