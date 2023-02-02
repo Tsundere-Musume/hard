@@ -6,6 +6,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    background-color: #fafafa;
+}
+
 .navbar{
     border-bottom: 1px solid #bbb;
     padding: 15px;
@@ -72,4 +76,43 @@ a{
     &:hover{
         color: darkblue;
     }
+}
+
+.container-item{
+    display: flex;
+    height: 170px;
+    padding: 20px;
+    margin: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 2px -5px #999;
+}
+
+.container-item-1{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+}
+.container-item-1 .user-name-pic{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.container-item-1 .user-name-pic .user-link{
+    color: #000;
+    margin-left: 5px;
+}
+
+.container-item-2{
+    width: 20%;
+    height: 100%;
+    align-self: center;
+}
+
+
+.container-item-2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
