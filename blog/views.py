@@ -91,7 +91,7 @@ class ListPosts(LoginRequiredMixin, View):
 
     def get(self, request):
         posts = Post.objects.filter(user=self.request.user).values(
-            "user__username", "user__myuser__image", "title", "body", "createdAt","user","updatedAt"
+            "user__username", "user__myuser__image", "title", "body", "createdAt","user","updatedAt","id"
         )
         postsJson = json.dumps(list(posts), default=json_serial)
         return render(request, self.template_name, {"postList": postsJson})

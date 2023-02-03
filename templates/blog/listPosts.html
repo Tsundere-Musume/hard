@@ -17,14 +17,14 @@ function addArticles(){
   const postList = JSON.parse("{{postList|escapejs}}");
   for(const post of postList)
   {
+    console.log(post)
     const blocks = (JSON.parse(post.body)).blocks
     let paragraph;
     let img;
-    const output = {};
     for(let i = 0; i < blocks.length; i++){
       switch(blocks[i].type){
         case "paragraph":
-          if(!output.hasOwnProperty("paragraph"))
+          if(!paragraph)
           {
           const p = document.createElement("p");
           p.innerHTML = blocks[i].data.text;
@@ -34,7 +34,7 @@ function addArticles(){
           break;
 
         case "Image":
-          if(!output.hasOwnProperty("img")){
+          if(!img){
             let image = document.createElement("img")
             image.src = `${blocks[i].data.file.url}`
             image.classList.add("post-thumbnail")
@@ -59,7 +59,7 @@ function addArticles(){
     userPic.src = `/media/${post.user__myuser__image}`
     userPic.classList.add("profile-pic")
     const title = document.createElement("h3")
-    title.innerHTML = post.title
+    title.innerHTML = `<a href="blog/${post.id}">${post.title}</a>`
     title.classList.add("post-heading")
     c3.appendChild(userPic)
     c3.appendChild(username)
