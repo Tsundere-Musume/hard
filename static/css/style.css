@@ -120,4 +120,8 @@ a:hover {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+#id_body {
+  display: none;
 }/*# sourceMappingURL=style.css.map */
