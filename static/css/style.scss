@@ -64,6 +64,13 @@ a{
     }
 }
 
+h3>a{
+    color: #000;
+    &:hover{
+        color: #000;
+    }
+}
+
 .main-body{
     width: 60%;
     margin: auto;
