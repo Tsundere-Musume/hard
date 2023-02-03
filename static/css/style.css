@@ -75,6 +75,14 @@ a:hover {
   color: darkblue;
 }
 
+.profile-page-pic-div img {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 150px;
+}
+
 .container-item {
   display: flex;
   height: 170px;

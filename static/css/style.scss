@@ -78,6 +78,17 @@ a{
     }
 }
 
+
+// profile
+
+.profile-page-pic-div img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 150px;
+}
+
+// blogs
 .container-item{
     display: flex;
     height: 170px;
